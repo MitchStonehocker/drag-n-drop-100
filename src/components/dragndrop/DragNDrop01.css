@@ -1,0 +1,13 @@
+.todos {
+    background: rgb(231, 247, 227);
+    height:200px;
+    width: 250px;
+    margin: 10px;
+  }
+  
+  .done {
+    background: rgb(231, 247, 227);
+    height: 200px;
+    width: 250px;
+    margin: 10px;
+  }
