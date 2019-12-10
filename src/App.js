@@ -1,5 +1,5 @@
 import React from 'react';
-import DragNDrop01 from './components/dragndrop/DragNDrop01'
+import DragNDrop01 from './components/dragndrop/DragNDrop01';
 import './App.css';
 
 

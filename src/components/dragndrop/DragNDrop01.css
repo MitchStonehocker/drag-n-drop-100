@@ -4,10 +4,16 @@
     width: 250px;
     margin: 10px;
   }
-  
-  .done {
-    background: rgb(231, 247, 227);
-    height: 200px;
-    width: 250px;
-    margin: 10px;
-  }
+
+.dragging {
+  background: rgb(248, 87, 87);
+  height: 50px;
+  width: 150px;
+  margin: 10px;
+}
+.done {
+  background: rgb(227, 234, 247);
+  height: 200px;
+  width: 250px;
+  margin: 10px;
+}

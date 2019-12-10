@@ -1,76 +1,86 @@
 import React, { useState } from 'react';
 
-import './DragNDrop01.css'
+import './DragNDrop01.css';
 
 const initialTodos = [
     {
-      taskID: 1,
-      task: 'Walk the walk along the river'
+        id: 1,
+        task: 'Walk the walk along the river'
     },
     {
-      taskID: 2,
-      task: 'Talk the talk with Jim'
+        id: 2,
+        task: 'Talk the talk with Jim'
     },
     {
-      taskID: 3,
-      task: 'Jump the jump with the cow'
+        id: 3,
+        task: 'Jump the jump with the cow'
     },
     {
-      taskID: 4,
-      task: 'Swim under the bridge'
+        id: 4,
+        task: 'Swim under the bridge'
     }
   ];
 
 export default function DragNDrop01 () {
     const [ todos, setTotdos ] = useState(initialTodos);
-    const [ completedTasks, setCompletedTasks ] = useState([]);
-    const [ draggedTask, setDraggedTask ] = useState({});
+    const [ completedTodos, setCompletedTodos ] = useState([]);
+    const [ draggedTodo, setDraggedTodo ] = useState({});
+    const [ isDragging, setIsDragging ] = useState(false);
 
-    const onDrag = (event, todo) => {
-        event.preventDefault();
-        console.log('>>>-DragNDrop-onDrag-event->',event);
-        setDraggedTask(todo);
+    const onDrag = (e, todo) => {
+        e.preventDefault();
+        setIsDragging(true);
+        //console.log('>>>-DragNDrop-onDrag-e->',e);
+        setDraggedTodo(todo);
     };
     
-    const onDragOver = (event) => {
-        event.preventDefault();
-    };
+    const onDragOver = e => e.preventDefault();
     
-    const onDrop = (event) => {
-        event.preventDefault();
+    const onDrop = e => {
+        e.preventDefault();
 
-        setCompletedTasks([...completedTasks, draggedTask]);
-        setTotdos(todos.filter(task => task.taskID !== draggedTask.taskID));
-        setDraggedTask({});
+        setCompletedTodos([...completedTodos, draggedTodo]);
+        setTotdos(todos.filter(todo => todo.id !== draggedTodo.id));
+        setDraggedTodo({});
+        setIsDragging(false);
     };
 
     return (
         <React.Fragment>
-            <div className="todos">
-                {
-                    todos.map((todo) =>
-                    <div
-                        key={todo.taskID}
-                        draggable
-                        onDrag={(event) => onDrag(event, todo)}
-                        >
-                        {todo.task}
-                    </div>
-                    )
-                }
-            </div>
-            <div
-                onDrop={event => onDrop(event)}
-                onDragOver={(event => onDragOver(event))}
-                className="done"
+            <div 
+                className="todos"
             >
-                {completedTasks.map((task) =>
+                {todos.map((todo) =>
                     <div
-                        key={task.taskID}
+                        key={todo.id}
+                        draggable
+                        onDrag={e => onDrag(e, todo)}
                     >
-                    {task.task}
+                    {todo.task}
                     </div>
                 )}
+            </div>
+
+            <div
+                className="done"
+                onDrop={e => onDrop(e)}
+                onDragOver={e => onDragOver(e)}
+            >
+                {completedTodos.map((todo) =>
+                    <div
+                        key={todo.id}
+                    >
+                    {todo.task}
+                    </div>
+                )}
+            </div>
+
+            <div 
+            className="dragging"
+            >
+                {
+                    isDragging ? <p>dragging</p> : <p>not dragging</p>
+                }
             </div>
         </React.Fragment>
     );
