@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Simple One-way Drag and Drop using Reacts Hooks and functional programing style
+
+A simple one-way, bare-bones, drag-and-drop APP using ReactJS.  Basic React Hooks are used with 100% functional programming style.
+
 ## Available Scripts
 
 In the project directory, you can run:
